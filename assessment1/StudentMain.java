@@ -1,11 +1,9 @@
 package assessment1;
 
-import java.util.ArrayList;
 import java.util.*;
 
 public class StudentMain {
 	private Set<Student> store = new HashSet<>();
-	private List<Student> list = new ArrayList<>();
 	
 	public static void main(String args[]) {
 		StudentMain demo = new StudentMain();
@@ -22,14 +20,21 @@ public class StudentMain {
 		store.add(student3);
 		Student student4 = new Student("s04",25);
 		store.add(student4);
-
-		list.add(student1);
-		list.add(student2);
-		list.add(student3);
-		list.add(student4);
+		Student student5 = new Student("s05",24);
+		store.add(student5);
 		
-		System.out.println("***Displaying Students with age above 21");
-		displayStudent();
+		System.out.println("***Displaying Students with age above 21***");
+		List<Student> list = toList(store);
+		
+		System.out.println("***Displaying Students with even age***");
+		Set<Student> set = toSet(store);
+		
+		System.out.println("***Displaying Students with odd age***");
+		Set<Student> put = toPut(store);
+		
+		System.out.println("***Displaying all Students***");
+		List<Student> list1 = toList1(store);
+		
 		
 	}catch (Exception e) {
 		System.out.println("Sudent not found");
@@ -37,15 +42,47 @@ public class StudentMain {
 
 }
 
-	public void displayStudent() {
-		for(int i=0; i<list.size();i++) {
-			Student student = list.get(i);
-			int age = student.getAge();
-			if(age>21) {
-			System.out.println("Roll no is "+student.getRollno()+" age is "+student.getAge());
+	public List<Student> toList1(Set<Student> store) {
+		List<Student> list = new ArrayList<>();
+		for(Student student: store) {
+			list.add(student);
+			System.out.println("Rollno is "+student.getRollno()+" Age is "+student.getAge());
 		}
-		}
-
+		return list;
 	}
+
+	public Set<Student> toPut(Set<Student> store) {
+		Set<Student> put = new HashSet<>();
+		for(Student student: store) {
+			if(student.getAge()%2 != 0) {
+				store.add(student);
+				System.out.println("Rollno is "+student.getRollno()+" Age is "+student.getAge());
+			}
+		}
+		return store;
+	}
+
+	public Set<Student> toSet(Set<Student> store) {
+		Set<Student> set = new HashSet<>();
+		for(Student student: store) {
+			if(student.getAge()%2 == 0) {
+				store.add(student);
+				System.out.println("Rollno is "+student.getRollno()+" Age is "+student.getAge());
+			}
+		}
+		return store;
+	}
+
+	public List<Student> toList(Set<Student> store) {
+		List<Student> list = new ArrayList<>();
+		for(Student student: store) {
+			if(student.getAge() > 21) {
+				list.add(student);
+				System.out.println("Rollno is "+student.getRollno()+" Age is "+student.getAge());
+			}
+		}
+		return list;
+	}
+
 }
 

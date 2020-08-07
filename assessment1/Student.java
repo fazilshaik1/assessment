@@ -26,16 +26,24 @@ public class Student {
 	public void setAge(int age) {
 		this.age = age;
 	}
+	
+	@Override
+	public int hashCode() {
+		int hash = rollno.hashCode();
+		return hash;
+	}
+	
 	@Override
 	public boolean equals(Object object) {
 		if (this == object) {
 			return true;
 		}
-		if (!(object instanceof Student)) {
+		if (object == null || !(object instanceof Student)) {
 			return false;
 		}
 		Student other = (Student) object;
-		return age == other.age && Objects.equals(rollno, other.rollno);
+		boolean equals = this.rollno.equals(other.rollno);
+		return equals;
 	}
 
 }
