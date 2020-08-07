@@ -1,5 +1,7 @@
 package assessment1;
 
+import java.util.Objects;
+
 public class Student {
 	private String rollno;
 	private int age;
@@ -24,6 +26,16 @@ public class Student {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	
+	@Override
+	public boolean equals(Object object) {
+		if (this == object) {
+			return true;
+		}
+		if (!(object instanceof Student)) {
+			return false;
+		}
+		Student other = (Student) object;
+		return age == other.age && Objects.equals(rollno, other.rollno);
+	}
 
 }
